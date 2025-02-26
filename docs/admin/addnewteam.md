@@ -1,22 +1,12 @@
 # Add New Team
 
-This AWS Lambda function updates the `team` attribute in a DynamoDB table named `Avana`. It processes a list of users from the incoming event and conditionally updates or creates the `team` attribute.
+## Overview
+- **Invoke URL** :[`https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/add_new_team`](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/add_new_team)
+- **Stage** : `test`
+- **Resource Name** : `add_new_team`  
+- **Method** : `PUT`  
 
-## API Gateway Endpoint
-
-**Invoke URL:**  
-[`https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/add_new_team`](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/add_new_team)
-
-**Resource ID:** `3d4c1c`  
-**ARN:** `arn:aws:execute-api:us-west-2:600087091387:xqaizmksl2/*/PUT/add_new_team`  
-
-## AWS Services Used
-
-- **API Gateway:** Handles HTTP requests and invokes the Lambda function.
-- **AWS Lambda:** Executes the function to update the DynamoDB table.
-- **Amazon DynamoDB:** Stores team-related data.
-
-## Function Code
+## Lambda Function
 
 ```python
 import json

@@ -1,20 +1,13 @@
 # Avana Create User
 
 ## Overview
-- **API Name**: AvanaCreateuser
-- **Method**: POST
-- **Resource ID**: bgy9ik
-- **ARN**: `arn:aws:execute-api:us-west-2:600087091387:xqaizmksl2/*/POST/AvanaCreateuser`
-- **API URL**: [https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/AvanaCreateuser](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/AvanaCreateuser)
-- **Lambda Function Name**: `avana_create_user_lambda`
-- **DynamoDB Table**: `Avana`
-- **Cognito User Pool ID**: `us-west-2_rpX7WI1w2`
-
-## Description
-The **Avana Create User API** is responsible for:
-1. Creating a new user in **Amazon Cognito**.
-2. Assigning the user to a **Cognito user group**.
-3. Storing the user data in the **Avana** DynamoDB table.
+- **Method**: `POST`
+- **Resource Name**: `AvanaCreateuser`
+- **Invoke URL**: [https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/AvanaCreateuser](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/AvanaCreateuser)
+- **Lambda Function Name**: `AvanaCreateuser`
+- **Cognito User Pool ID**: `us-west-2_rpX7WI1w2` 
+- **Notes** : `Replace your Cognito User Pool ID`
+---
 
 ## Lambda Function
 

@@ -1,23 +1,14 @@
 # Admin View User
 
 ## Overview 
-- **API Name:** `Avana`  
 - **Resource Name**: `admin_view_user`
 - **Method**: `GET`
-- **ARN:** `arn:aws:execute-api:us-west-2:600087091387:xqaizmksl2/*/GET/admin_view_user` 
-- **API URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/admin_view_user`  
-- **Resource ID:** `6xfemj`  
+- **Invoke URL** : [https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/admin_view_user](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/admin_view_user) 
 - **Lambda Function Name:** `Avana_get_all`
  
-
 ---
 
-## Description
-The `admin_view_user` API allows retrieving user data from the `Avana` DynamoDB table based on `category` and `distributor_name`. It queries the table and returns users in descending order.
-
----
-
-## Lambda Function Implementation
+## Lambda Function
 ```python
 import json
 import boto3
