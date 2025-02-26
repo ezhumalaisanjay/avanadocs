@@ -21,7 +21,7 @@ function HomepageHeader() {
             className="button button--secondary button--lg"
             to="/docs/category/admin-portal"
           >
-            Docusaurus Tutorial - 5min ⏱️
+            Start Now 🚀
           </Link>
         </div>
       </div>
