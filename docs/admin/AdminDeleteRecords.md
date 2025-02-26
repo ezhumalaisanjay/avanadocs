@@ -1,10 +1,11 @@
-## Admin delete records 
+# Admin Delete Records 
 
-### API Overview
-
-**Name:** Admin\_delete\_records\
-**API URL:** [https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/Admin\_delete\_records](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/Admin_delete_records)\
-**Lambda Function Name:** Avana\_add\_mew\_team
+## Overview 
+- **API Name**: Avana
+- **Resource Name:** Admin_delete_records
+- **API URL:** [https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/Admin\_delete\_records](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/Admin_delete_records)\
+- **Lambda Function Name:** Admin_delete_records
+- **Method**: Delete
 
 ---
 
@@ -14,26 +15,8 @@ The `Admin_delete_records` API allows deleting specific records from the DynamoD
 
 ---
 
-## Request Format
 
-The API expects a list of JSON objects as input, where each object contains:
-
-```json
-[
-    {
-        "category": "example_category",
-        "timestamp": "2024-02-25T12:34:56Z"
-    },
-    {
-        "category": "another_category",
-        "timestamp": "2024-02-24T11:22:33Z"
-    }
-]
-```
-
----
-
-## Lambda Function Implementation
+## Lambda Function
 
 ```python
 import boto3
@@ -77,28 +60,6 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': 'Error deleting items'
         }
-```
-
----
-
-## Response Format
-
-### Success Response
-
-```json
-{
-    "statusCode": 200,
-    "body": "Records deleted"
-}
-```
-
-### Error Response
-
-```json
-{
-    "statusCode": 500,
-    "body": "Error deleting items"
-}
 ```
 
 ---

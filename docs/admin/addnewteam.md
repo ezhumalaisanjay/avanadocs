@@ -1,6 +1,4 @@
-
-
-# AWS Lambda Function: `add_new_team`
+# Add New Team
 
 This AWS Lambda function updates the `team` attribute in a DynamoDB table named `Avana`. It processes a list of users from the incoming event and conditionally updates or creates the `team` attribute.
 
@@ -56,48 +54,4 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps('Records updated successfully')
     }
-Request Payload Example
-json
-Copy
-Edit
-{
-    "Users": [
-        {
-            "category": "Engineering",
-            "timestamp": "2025-02-25T10:00:00Z"
-        },
-        {
-            "category": "HR",
-            "timestamp": "2025-02-25T11:00:00Z"
-        }
-    ],
-    "team": "Team Alpha"
-}
-Response Example
-json
-Copy
-Edit
-{
-    "statusCode": 200,
-    "body": "\"Records updated successfully\""
-}
-Error Handling
-Missing Fields: Ensure that Users array and team field are included in the request payload.
-DynamoDB Issues: Verify the table Avana exists and has appropriate permissions for Lambda.
-IAM Permissions Required
-The Lambda function requires the following IAM policy to access DynamoDB:
-
-json
-Copy
-Edit
-{
-    "Effect": "Allow",
-    "Action": [
-        "dynamodb:UpdateItem"
-    ],
-    "Resource": "arn:aws:dynamodb:us-west-2:600087091387:table/Avana"
-}
-Deployment Steps
-Deploy the Lambda function using AWS Console or AWS CLI.
-Configure API Gateway to trigger this function on PUT /add_new_team.
-Test the API using Postman, cURL, or AWS API Gateway test feature.
+```
