@@ -1,10 +1,10 @@
-# Filter User Records By Date
+# Filter User Records Status Date Range
 
 ### API Overview
-- **Resource Name:** `Filter_specific_user_records_by_date `
+- **Resource Name:** `Filter_specific_user_records_status_date_range`
 - **Method:** `PUT`
-- **Invoke URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/Filter_specific_user_records_by_date`
-- **Lambda Function:** `Filter_specific_user_records_by_date`
+- **Invoke URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/Filter_specific_user_records_status_date_range`
+- **Lambda Function:** `Filter_specific_user_records_status_date_range`
 
 ---
 
@@ -19,13 +19,14 @@ def lambda_handler(event, context):
     table = dynamodb.Table('Avana')
     
     # Define filter expression
-    filter_expression = "UserId = :user_id AND dates BETWEEN :start_date AND :end_date"
+    filter_expression = "UserId = :user_id AND dates BETWEEN :start_date AND :end_date AND tracking_status = :status"
     
     # Define expression attribute values
     expression_attribute_values = {
         ':user_id': event['UserId'],
         ':start_date': event['start_date'],
-        ':end_date': event['end_date']
+        ':end_date': event['end_date'],
+        ':status': event['tracking_status']
     }
     
     # Perform the query
