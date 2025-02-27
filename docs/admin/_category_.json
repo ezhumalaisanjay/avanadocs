@@ -1,5 +1,5 @@
 {
-  "label": "Admin Portal",
+  "label": "backend API",
   "position": 1,
   "link": {
     "type": "generated-index"
