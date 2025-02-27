@@ -3,7 +3,7 @@
 ### API Information
 - **Resource Name:** `distributorcount`
 - **Method:** `PUT`
-- **API URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/distributorcount`
+- **invoke URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/distributorcount`
 - **Lambda Function Name:** `getdistributorcount`
 
 ### Lambda Function: `getdistributorcount`
@@ -40,42 +40,3 @@ def lambda_handler(event, context):
 
     return result
 ```
-
-### Request Parameters
-| Parameter        | Type   | Required | Description          |
-|------------------|--------|----------|----------------------|
-| `category`       | String | Yes      | The category to filter records. |
-| `tracking_status`| String | Yes      | The tracking status to filter records. |
-
-### Sample Request Body
-```json
-{
-  "category": "Medical",
-  "tracking_status": "Sale"
-}
-```
-
-### Response
-| Field             | Type   | Description                          |
-|-------------------|--------|--------------------------------------|
-| `distributor_name`| String | Name of the distributor.             |
-| `count`           | Number | Count of records for the distributor.|
-
-### Sample Response
-```json
-[
-  {
-    "distributor_name": "Distributor A",
-    "count": 5
-  },
-  {
-    "distributor_name": "Distributor B",
-    "count": 3
-  }
-]
-```
-
-### Error Handling
-- `400 Bad Request` if required parameters are missing.
-- `500 Internal Server Error` for any unexpected server-side issues.
-

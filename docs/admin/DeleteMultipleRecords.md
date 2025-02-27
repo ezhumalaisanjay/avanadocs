@@ -1,77 +1,10 @@
 # Delete Multiple Records
 
-## Resource Name
-`delete_multiple_records`
-
-## Method
-`DELETE`
-
-## API URL
-`https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/delete_multiple_records`
-
-## Lambda Function Name
-`Avana_delete_records`
-
-## Description
-This API deletes multiple records from the `Avana` DynamoDB table based on the provided list of items, each containing a partition key (`category`) and a sort key (`timestamp`).
-
----
-
-## Request
-
-### Headers
-```
-Content-Type: application/json
-```
-
-### Request Body
-```json
-{
-  "items": [
-    {
-      "category": "Category1",
-      "timestamp": "2024-08-31T12:00:00Z"
-    },
-    {
-      "category": "Category2",
-      "timestamp": "2024-08-31T14:00:00Z"
-    }
-  ]
-}
-```
-
-### Request Parameters
-| Parameter   | Type     | Required | Description                   |
-|-------------|----------|----------|-------------------------------|
-| `items`     | `array`  | Yes      | List of objects to be deleted  |
-| `category`  | `string` | Yes      | Partition key of the item     |
-| `timestamp` | `string` | Yes      | Sort key of the item          |
-
----
-
-## Response
-
-### Success Response
-**Status Code:** `200`
-
-**Response Body:**
-```json
-{
-  "statusCode": 200,
-  "body": "Items deleted successfully"
-}
-```
-
-### Error Response (Missing `items` Key)
-**Status Code:** `400`
-
-**Response Body:**
-```json
-{
-  "statusCode": 400,
-  "body": "Missing \"items\" key in the event payload"
-}
-```
+## Overview
+- **Resource Name** : `delete_multiple_records`
+- **Method** : `DELETE`
+- **API URL** : `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/delete_multiple_records`
+- **Lambda Function Name** : `Avana_delete_records`
 
 ---
 

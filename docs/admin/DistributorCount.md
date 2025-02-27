@@ -3,7 +3,7 @@
 ### API Overview
 - **Resource Name:** `distributor_with_count`
 - **Method:** `PUT`
-- **API URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/distributor_with_count`
+- **invoke URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/distributor_with_count`
 - **Lambda Function:** `distributor_records_Count`
 
 ---

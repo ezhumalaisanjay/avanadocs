@@ -1,20 +1,13 @@
 # Create Sales Records in Zoho CRM
 
 ## Overview
-- **API Name**: Create_records_custom_module_zoho_crm
+- **Resource Name**: crm
+- **Sub Resource Name**: Create_records_custom_module_zoho_crm
 - **Method**: POST
-- **Resource ID**: zxm5eo
-- **ARN**: `arn:aws:execute-api:us-west-2:600087091387:xqaizmksl2/*/POST/crm/Create_records_sales_module_zoho_crm`
-- **API URL**: [https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/crm/Create_records_sales_module_zoho_crm](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/crm/Create_records_sales_module_zoho_crm)
+- **Invoke URL**: [https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/crm/Create_records_sales_module_zoho_crm](https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/crm/Create_records_sales_module_zoho_crm)
 - **Lambda Function Name**: `Create_records_sales_module_zoho_crm`
-- **DynamoDB Table**: `Avana`
 - **Zoho CRM API Endpoint**: `https://www.zohoapis.in/crm/v5/Sales_Report`
-
-## Description
-This API:
-1. **Retrieves an access token** from the `Avana` DynamoDB table.
-2. **Sends a request** to create a record in the Zoho CRM custom module (`Application_Report`).
-3. **Returns the Zoho CRM response** with the status code and headers.
+---
 
 ## Lambda Function
 

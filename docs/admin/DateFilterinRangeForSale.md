@@ -1,13 +1,8 @@
 # Date Filter By Range For Sale
 
-### Resource Name
-`datefitter_indaterange_for_sale`
-
-### Method
-`PUT`
-
-### API URL
-`https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/datefitter_indaterange_for_sale`
+- **Resource Name** : `datefitter_indaterange_for_sale`
+- **Method** : `PUT`
+- **Invoke URL** : `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/datefitter_indaterange_for_sale`
 
 ---
 
@@ -142,37 +137,3 @@ def lambda_handler(event, context):
 ```
 
 ---
-
-### Request Parameters
-| Parameter         | Type     | Required | Description |
-|------------------|----------|----------|-------------|
-| `category`        | `string` | Yes      | Partition key of the DynamoDB table |
-| `start_date`      | `string` | No       | Start date for filtering |
-| `end_date`        | `string` | No       | End date for filtering |
-| `distributor_name`| `string` | No       | Filter by distributor name |
-| `product_group`   | `string` | No       | Filter by product group |
-| `doctorsname`     | `string` | No       | Filter by doctor's name |
-| `tracking_status` | `string` | No       | Filter by tracking status |
-| `group_title`     | `string` | No       | Filter by group title |
-
----
-
-### Response
-```json
-{
-    "message": "Lambda function executed successfully!",
-    "response_data": [...],
-    "entire_total_count": 100,
-    "entire_sale_count": 50,
-    "entire_revenue_count": 100000.0,
-    "entire_quantity_count": 200
-}
-```
-
----
-
-### Status Codes
-- `200 OK` - Successful execution
-- `400 Bad Request` - Invalid input parameters
-- `500 Internal Server Error` - Execution failure
-

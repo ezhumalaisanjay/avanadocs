@@ -3,7 +3,7 @@
 ### API Overview
 - **Resource Name:** `dtailview_product_sales`
 - **Method:** `PUT`
-- **API URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/dtailview_product_sales`
+- **invoke URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/dtailview_product_sales`
 - **Lambda Function:** `dtailview_product_sale`
 
 ---
