@@ -1,6 +1,6 @@
 # Distributor Wise Date Range Application Report
 
-### Resource Information
+### Overview
 - **Resource Name:** `Distributor_wise_date_range_application_report`
 - **Method:** `PUT`
 - **API URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/Distributor_wise_date_range_application_report`
