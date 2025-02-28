@@ -1,6 +1,6 @@
 {
-  "label": "backend-API",
-  "position": 2,
+  "label": "CognitoUserPool",
+  "position": 4,
   "link": {
     "type": "generated-index"
   }

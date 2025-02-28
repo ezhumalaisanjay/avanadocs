@@ -1,6 +1,6 @@
 {
-  "label": "backend-API",
-  "position": 2,
+  "label": "DynamoDB",
+  "position": 5,
   "link": {
     "type": "generated-index"
   }
