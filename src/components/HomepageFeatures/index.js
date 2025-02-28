@@ -5,7 +5,7 @@ import { Server, Code, Cloud, Users, Database } from "lucide-react";
 
 const FeatureList = [
   {
-    title: "Back End",
+    title: "Api Gateway & Lambda",
     icon: <Server size={24} color="#1E40AF" />, // Deep blue
     description:
       "Learn about AWS Lambda and API Gateway. Understand how serverless functions work, how to deploy and manage them, and how API Gateway enables secure and scalable API access.",
@@ -13,7 +13,7 @@ const FeatureList = [
     color: "#DBEAFE", // Light blue
   },
   {
-    title: "Front End",
+    title: "User Intreface & Front End",
     icon: <Code size={24} color="#B45309" />, // Deep orange
     description:
       "HTML, JS Files (Instructions to modify key values). Learn how to customize and manage the frontend components efficiently.",
