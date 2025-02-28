@@ -53,7 +53,7 @@ Find the above API ID across all HTML files and replace it with the API Gateway 
 
 Find:
 ```javascript
-https://xqaizmksl2.execute-api.<region>.amazonaws.com/<stage>
+https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test
 ```
 
 Replace with:
