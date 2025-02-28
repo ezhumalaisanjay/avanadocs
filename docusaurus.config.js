@@ -10,7 +10,7 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "AVANA",
+  title: "Avana Docs",
   tagline: "API documentation",
   favicon: "img/logo.svg",
 
@@ -65,7 +65,7 @@ const config = {
     ({
       image: "img/docusaurus-social-card.jpg",
       navbar: {
-        title: "Avana",
+        title: "Avana Docs",
         logo: {
           alt: "Avana",
           src: "img/logo.svg",
