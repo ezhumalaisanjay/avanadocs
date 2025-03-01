@@ -104,4 +104,15 @@ Repeat steps 1-8 for each API file, using the corresponding resource name, sub-r
 
 ---
 
+
+### Notes on Installing Additional Packages for AWS Lambda
+
+- If your Lambda function requires packages that are not included by default in AWS Lambda, you can install them locally on your development machine.
+- After installing the required packages, place both the Lambda function file and the installed packages in the same directory.
+- Zip the entire directory (including the Lambda function and the packages).
+- Upload the zipped file to AWS Lambda to deploy the function with the necessary dependencies.
+
+This approach allows your Lambda function to access all required libraries during execution.
+
+
 **End of Document**
