@@ -56,7 +56,9 @@ function Feature({ icon, title, description, link, color }) {
         </div>
         <p className={styles.featureDescription}>{description}</p>
         <div className={styles.featureLink}>
-          <Link to={link}>See More</Link>
+          <Link to={link} className={styles.featureButton}>
+            See More
+          </Link>
         </div>
       </div>
     </div>
