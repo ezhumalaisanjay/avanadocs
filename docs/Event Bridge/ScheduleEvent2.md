@@ -1,7 +1,7 @@
-# Schedule Event 1
+# Schedule Event 2
 
 **Schedule Name:**  
-`Generate_access_token`
+`Trigger_refresh_token_serach_crm_access_token`
 
 **Description:**  
 Generate access token using refresh token
@@ -33,7 +33,7 @@ Example: `Dec 31, 2025, 23:50:00 (UTC+05:30)`
 `Invoke`
 
 **Target:**  
-`Get_refresh_token_search_crm`
+`Search_crm_refresh_token_trigger`
 
 **Target ARN:**  
 `<Lambda function ARN>`
@@ -61,13 +61,12 @@ dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('Avana')
 
 def lambda_handler(event, context):
-    url = "https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.b77ecc1b18905aeeb0134b14082dc6b2.71776702706be73fe2e2a5a0e6d1627d&client_id=1000.AE5GSW2SAXAEFYHQO8HFVX925F1N0W&grant_type=refresh_token&client_secret=51ed25b3148f704a6dfefd4055b3dd9e6d9daa4e18"
+    url = "https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.ef261646378f6a6a114a13ba44f4d16e.5d887f1ea118bf9a0d62cd1f6adb1ab0&client_id=1000.AE5GSW2SAXAEFYHQO8HFVX925F1N0W&client_secret=51ed25b3148f704a6dfefd4055b3dd9e6d9daa4e18&redirect_uri=https://www.google.co.in&grant_type=refresh_token"
     
     payload = {}
     headers = {
-      'Cookie': '6e73717622=3bcf233c3836eb7934b6f3edc257f951; JSESSIONID=1999019559014A24EC9ACA5A6BAE8EDE; _zcsr_tmp=608b44b9-3a64-4d10-a1c2-3323e0dcd07f; iamcsr=608b44b9-3a64-4d10-a1c2-3323e0dcd07f'
+      'Cookie': '6e73717622=94da0c17b67b4320ada519c299270f95; _zcsr_tmp=783d0a65-35f3-4a60-8cc4-1b48ab632120; iamcsr=783d0a65-35f3-4a60-8cc4-1b48ab632120'
     }
-    
     response = requests.request("POST", url, headers=headers, data=payload)
     
     print(response.text)
@@ -80,7 +79,7 @@ def lambda_handler(event, context):
         print("Access Token:", access_token)
         
         category = "access_token"
-        timestamp = "2023-10-21T12:00:05.955395"
+        timestamp = "2024-05-11T12:00:05.952295"
         access_tokens = access_token
         
         # Update the record in DynamoDB

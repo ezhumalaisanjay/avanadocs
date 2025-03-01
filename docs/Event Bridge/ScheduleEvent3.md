@@ -1,10 +1,10 @@
-# Schedule Event 1
+# Schedule Event 3
 
 **Schedule Name:**  
-`Generate_access_token`
+`Generate_access_token_inventory`
 
 **Description:**  
-Generate access token using refresh token
+Generate access token for zoho inventory
 
 **Schedule Start Time:**  
 Example: `Feb 28, 2025, 01:00:00 (UTC+05:30)`
@@ -33,7 +33,7 @@ Example: `Dec 31, 2025, 23:50:00 (UTC+05:30)`
 `Invoke`
 
 **Target:**  
-`Get_refresh_token_search_crm`
+`Get_refresh_token_inventory`
 
 **Target ARN:**  
 `<Lambda function ARN>`
@@ -61,11 +61,11 @@ dynamodb = boto3.resource('dynamodb')
 table = dynamodb.Table('Avana')
 
 def lambda_handler(event, context):
-    url = "https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.b77ecc1b18905aeeb0134b14082dc6b2.71776702706be73fe2e2a5a0e6d1627d&client_id=1000.AE5GSW2SAXAEFYHQO8HFVX925F1N0W&grant_type=refresh_token&client_secret=51ed25b3148f704a6dfefd4055b3dd9e6d9daa4e18"
+    url = "https://accounts.zoho.in/oauth/v2/token?refresh_token=1000.b4055cc4bf6841fdc79cdabf7debf246.ce6b1ceaebd16f5b9a1f7c94f7d3abde&client_id=1000.AE5GSW2SAXAEFYHQO8HFVX925F1N0W&client_secret=51ed25b3148f704a6dfefd4055b3dd9e6d9daa4e18&redirect_uri=https://www.google.co.in&grant_type=refresh_token"
     
     payload = {}
     headers = {
-      'Cookie': '6e73717622=3bcf233c3836eb7934b6f3edc257f951; JSESSIONID=1999019559014A24EC9ACA5A6BAE8EDE; _zcsr_tmp=608b44b9-3a64-4d10-a1c2-3323e0dcd07f; iamcsr=608b44b9-3a64-4d10-a1c2-3323e0dcd07f'
+        'Cookie': '6e73717622=3bcf233c3836eb7934b6f3edc257f951; _zcsr_tmp=608b44b9-3a64-4d10-a1c2-3323e0dcd07f; iamcsr=608b44b9-3a64-4d10-a1c2-3323e0dcd07f'
     }
     
     response = requests.request("POST", url, headers=headers, data=payload)
@@ -79,8 +79,8 @@ def lambda_handler(event, context):
         access_token = response_data['access_token']
         print("Access Token:", access_token)
         
-        category = "access_token"
-        timestamp = "2023-10-21T12:00:05.955395"
+        category = "access_token_inventory"
+        timestamp = "2023-10-22T12:00:05.955636"
         access_tokens = access_token
         
         # Update the record in DynamoDB
