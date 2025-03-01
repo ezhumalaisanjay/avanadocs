@@ -88,3 +88,27 @@ def lambda_handler(event, context):
         'body': json.dumps({'items': sorted_items}, default=str)
     }
 ```
+
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Query"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Avana"
+            ]
+        }
+    ]
+}
+
+```
+---
