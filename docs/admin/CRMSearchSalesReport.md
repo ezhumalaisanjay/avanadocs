@@ -85,4 +85,44 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps(deleteresponse)
     }
+```
 
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:Query"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-west-2:YOUR_ACCOUNT_ID:table/Avana"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-west-2:YOUR_ACCOUNT_ID:log-group:/aws/lambda/YOUR_LAMBDA_FUNCTION_NAME:*"
+      ]
+    }
+  ]
+}
+
+
+
+
+
+
+```
+---

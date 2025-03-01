@@ -53,6 +53,29 @@ def lambda_handler(event, context):
             'body': 'Error deleting items'
         }
 ```
+
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:DeleteItem"
+      ],
+      "Resource": "arn:aws:dynamodb:YOUR_REGION:YOUR_ACCOUNT_ID:table/Avana"
+    }
+  ]
+}
+
+
+
+```
 ---
 
 ## Notes

@@ -83,3 +83,40 @@ def lambda_handler(event, context):
             'statusCode': 500,
             'body': json.dumps({'error': str(e)})
         }
+
+```
+
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "cognito-idp:AdminCreateUser",
+        "cognito-idp:AdminSetUserPassword",
+        "cognito-idp:AdminAddUserToGroup"
+      ],
+      "Resource": [
+        "arn:aws:cognito-idp:us-west-2:YOUR_ACCOUNT_ID:userpool/YOUR_USER_POOL_ID"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:PutItem"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-west-2:YOUR_ACCOUNT_ID:table/Avana"
+      ]
+    }
+  ]
+}
+
+```
+---

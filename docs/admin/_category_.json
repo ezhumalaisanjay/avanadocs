@@ -2,6 +2,7 @@
   "label": "backend-API",
   "position": 2,
   "link": {
-    "type": "generated-index"
+      "type": "generated-index",
+      "description": "Explore backend API documentation, including setup, endpoints, and integration details."
   }
 }

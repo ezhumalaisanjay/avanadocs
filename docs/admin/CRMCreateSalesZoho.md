@@ -57,3 +57,33 @@ def lambda_handler(event, context):
         'statusCode': 200,
         'body': json.dumps(response_data)
     }
+
+```
+
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:Query"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-west-2:YOUR_ACCOUNT_ID:table/Avana"
+      ]
+    }
+  ]
+}
+
+
+
+
+
+```
+---
