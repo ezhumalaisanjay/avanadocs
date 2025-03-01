@@ -4,7 +4,12 @@
   --ifm-font-family-base: 'Poppins', sans-serif;
 }
 
-/* Reduce sizes for h1, h2, h3 */
+/* Apply Poppins font globally */
+body {
+  font-family: var(--ifm-font-family-base);
+}
+
+/* Heading Styles */
 h1 {
   font-size: 2rem; /* Adjust as needed */
   font-weight: 700;
@@ -17,7 +22,31 @@ h2 {
 
 h3 {
   font-size: 1.5rem;
+  font-weight: 500;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+
+h5 {
+  font-size: 1rem;
   font-weight: 400;
+}
+
+/* Paragraph and Links */
+p {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+a {
+  font-size: 1rem;
+  font-weight: 400;
+  text-decoration: none;
+  color: inherit;
 }
 
 :root {
