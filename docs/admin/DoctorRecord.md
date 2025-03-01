@@ -45,5 +45,25 @@ def lambda_handler(event, context):
     return response_data
 ```
 
+
 ---
 
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "dynamodb:Scan",
+            "Resource": "arn:aws:dynamodb:us-west-2:YOUR_AWS_ACCOUNT_ID:table/Avana"
+        }
+    ]
+}
+
+
+
+
+```
+---

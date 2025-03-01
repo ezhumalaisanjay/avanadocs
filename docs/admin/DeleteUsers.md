@@ -62,6 +62,32 @@ def lambda_handler(event, context):
 
 ---
 
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": "cognito-idp:AdminDeleteUser",
+            "Resource": "arn:aws:cognito-idp:us-west-2:YOUR_AWS_ACCOUNT_ID:userpool/us-west-2_rpX7WI1w2"
+        },
+        {
+            "Effect": "Allow",
+            "Action": "dynamodb:DeleteItem",
+            "Resource": "arn:aws:dynamodb:us-west-2:YOUR_AWS_ACCOUNT_ID:table/Avana"
+        }
+    ]
+}
+
+
+
+
+
+```
+---
+
 ### Notes:
 - Ensure the `user_pool_id` is correct and your Lambda function has the necessary permissions to delete users from Cognito and DynamoDB.
 - Use proper IAM policies to avoid security issues.

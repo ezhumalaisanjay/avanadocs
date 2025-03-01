@@ -195,4 +195,35 @@ def prepare_response_data(items):
 
 ```
 
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:GetItem"
+            ],
+            "Resource": "arn:aws:dynamodb:us-west-2:<account-id>:table/Avana"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:us-west-2:<account-id>:log-group:/aws/lambda/*"
+        }
+    ]
+}
+
+```
 ---
