@@ -60,3 +60,38 @@ def lambda_handler(event, context):
         'body': json.dumps(response_data)
     }
 ```
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Query"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Avana"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:REGION:ACCOUNT_ID:log-group:/aws/lambda/YOUR_LAMBDA_NAME:*"
+            ]
+        }
+    ]
+}
+
+
+```
+---

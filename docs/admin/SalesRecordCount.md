@@ -202,3 +202,30 @@ def format_response(aggregated_info):
 
     return overall_counts, overall_total_revenue, response_data, overall_total_records
 
+```
+
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Scan",
+                "dynamodb:Query"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Avana"
+            ]
+        }
+    ]
+}
+
+
+```
+---
