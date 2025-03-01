@@ -1,41 +1,35 @@
 # Request Report
 
-### API Overview
+## API Overview
+
 - **Resource Name:** `request`
 - **Sub Resource Name:** `request_report`
 - **Method:** `PUT`
 - **Invoke URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/request/request_report`
 - **Lambda Function:** `avana_get_request_user`
 
----
 
 
-### Lambda Function
+## **Lambda Function**
+
 ```python
 import json
 import boto3
 
-# Initialize a DynamoDB client
 dynamodb = boto3.client('dynamodb')
 table_name = 'Avana'
 
 def lambda_handler(event, context):
     try:
-        # Extract the desired category and UserId from the input event
         category = event.get("category")
         userid = event.get("UserId")
 
-        # Check if user_id is missing or not a string
         if userid is None or not isinstance(userid, str):
-            error_message = "Invalid or missing 'userId' in the input event."
-            print(error_message)
-            response = {
-                "statusCode": 400,  # You can use a more appropriate HTTP status code
-                "body": json.dumps(error_message)
+            return {
+                "statusCode": 400,
+                "body": json.dumps("Invalid or missing 'UserId' in the input event.")
             }
-            return response
 
-        # Perform a query operation to retrieve data from the DynamoDB table based on the category and UserId
         response = dynamodb.query(
             TableName=table_name,
             KeyConditionExpression="category = :cat",
@@ -46,30 +40,49 @@ def lambda_handler(event, context):
             }
         )
 
-        # Extract the items from the response
         items = response.get("Items", [])
-
-        # Convert the items to a list of dictionaries
         data = [dict((k, v.get('S', v.get('N'))) for k, v in item.items()) for item in items]
 
-        # Return the retrieved data in the response
-        response = {
+        return {
             "statusCode": 200,
             "body": json.dumps(data)
         }
     except Exception as e:
-        error_message = f"Error retrieving data from Avana table: {str(e)}"
-        print(error_message)
-        # Return an error response with a 500 status code and the specific error message
-        response = {
+        return {
             "statusCode": 500,
-            "body": json.dumps(error_message)
+            "body": json.dumps(f"Error retrieving data from Avana table: {str(e)}")
         }
-
-    return response
-
-
 ```
-
 ---
 
+## **IAM Policy for Lambda Execution Role**
+
+Attach this policy to the Lambda execution role to allow access to DynamoDB and CloudWatch.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Query"
+            ],
+            "Resource": "arn:aws:dynamodb:us-west-2:YOUR_AWS_ACCOUNT_ID:table/Avana"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:us-west-2:YOUR_AWS_ACCOUNT_ID:*"
+        }
+    ]
+}
+```
+
+Replace `YOUR_AWS_ACCOUNT_ID` with your actual AWS account ID.
+
+---
