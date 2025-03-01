@@ -48,3 +48,28 @@ def lambda_handler(event, context):
         'body': 'sales order status attribute updated successfully.'
     }
 ```
+
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:UpdateItem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Avana"
+            ]
+        }
+    ]
+}
+
+
+```
+---

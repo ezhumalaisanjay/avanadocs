@@ -38,3 +38,26 @@ def lambda_handler(event, context):
 
     return response_list
 ```
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:PutItem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Avana"
+            ]
+        }
+    ]
+}
+
+```
+---
