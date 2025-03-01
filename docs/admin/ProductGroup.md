@@ -1,76 +1,79 @@
 # Product Group
 
-### API Overview
+## API Overview
+
 - **Resource Name:** `gat_Dr_Product_Group`
 - **Method:** `PUT`
 - **Invoke URL:** `https://xqaizmksl2.execute-api.us-west-2.amazonaws.com/test/get_sales_Products_for_sale_Lead/gat_Dr_Product_Group`
 - **Lambda Function:** `gat_Dr_Product_Group`
 
----
 
 
-### Lambda Function
+## **Lambda Function**
+
 ```python
 import boto3
 import re
+import logging
+
+# Configure logging
+logger = logging.getLogger()
+logger.setLevel(logging.INFO)
 
 def lambda_handler(event, context):
-    category = event.get('category', '')
+    try:
+        category = event.get('category', '')
+        dynamodb = boto3.resource('dynamodb')
+        table = dynamodb.Table('Avana')  # Replace 'Avana' with your actual table name
 
-    dynamodb = boto3.resource('dynamodb')
-    table = dynamodb.Table('Avana')  # Replace 'Avana' with your actual table name
+        aggregated_info = {}
+        last_evaluated_key = None
 
-    aggregated_info = {}
-
-    last_evaluated_key = None
-
-    while True:
-        scan_params = {
-            "FilterExpression": "category = :category",
-            "ExpressionAttributeValues": {
-                ":category": category
+        while True:
+            scan_params = {
+                "FilterExpression": "category = :category",
+                "ExpressionAttributeValues": {":category": category}
             }
+            if last_evaluated_key:
+                scan_params['ExclusiveStartKey'] = last_evaluated_key
+
+            response = table.scan(**scan_params)
+            last_evaluated_key = response.get('LastEvaluatedKey')
+            process_response_with_category(response, aggregated_info)
+
+            if not last_evaluated_key:
+                break
+
+        overall_counts, overall_total_revenue, response_data, overall_total_records = format_response(aggregated_info)
+
+        response = {
+            "overall_sale_count": overall_counts["overall_sale_count"],
+            "overall_lead_count": overall_counts["overall_lead_count"],
+            "overall_total_count": overall_counts["overall_total_count"],
+            "overall_total_revenue": overall_total_revenue,
+            "overall_total_records": overall_total_records,
+            "response_data": response_data
         }
-        if last_evaluated_key:
-            scan_params['ExclusiveStartKey'] = last_evaluated_key
 
-        response = table.scan(**scan_params)
+        logger.info("Lambda executed successfully")
+        return response
 
-        last_evaluated_key = response.get('LastEvaluatedKey')
-        process_response_with_category(response, aggregated_info)
-
-        if not last_evaluated_key:
-            break
-
-    overall_counts, overall_total_revenue, response_data, overall_total_records = format_response(aggregated_info)
-
-    response = {
-        "overall_sale_count": overall_counts["overall_sale_count"],
-        "overall_lead_count": overall_counts["overall_lead_count"],
-        "overall_total_count": overall_counts["overall_total_count"],
-        "overall_total_revenue": overall_total_revenue,
-        "overall_total_records": overall_total_records,
-        "response_data": response_data
-    }
-
-    return response
-
+    except Exception as e:
+        logger.error(f"Error processing request: {str(e)}")
+        return {
+            "statusCode": 500,
+            "body": f"Internal Server Error: {str(e)}"
+        }
 
 def process_response_with_category(response, aggregated_info):
     matching_records = response.get('Items', [])
 
     for record in matching_records:
         product_group = record.get('product_group')
-
         if not product_group:
             continue
 
-        quantity_str = record.get('quantity', '1')
-        quantity_match = re.search(r'\d+', quantity_str)
-        if quantity_match:
-            quantity = int(quantity_match.group())
-        else:
-            quantity = 1
+        quantity = int(re.search(r'\d+', record.get('quantity', '1')).group()) if re.search(r'\d+', record.get('quantity', '1')) else 1
 
         if 'Total_Count' not in aggregated_info:
             aggregated_info['Total_Count'] = {}
@@ -80,7 +83,7 @@ def process_response_with_category(response, aggregated_info):
                 'Lead_Count': 0,
                 'Total_Count': 0,
                 'Total_revenue': 0,
-                'Matching_Records': []  # Add an empty list to store matching records
+                'Matching_Records': []
             }
 
         tracking_status = record.get('tracking_status', '').lower()
@@ -94,10 +97,7 @@ def process_response_with_category(response, aggregated_info):
 
         aggregated_info['Total_Count'][product_group]['Total_Count'] += quantity
         aggregated_info['Total_Count'][product_group]['Total_revenue'] += revenue
-        
-        # Append record details to the 'Matching_Records' list
         aggregated_info['Total_Count'][product_group]['Matching_Records'].append(record)
-
 
 def format_response(aggregated_info):
     overall_sale_count = 0
@@ -125,7 +125,7 @@ def format_response(aggregated_info):
             'Lead_Count': lead_count,
             'Total_Count': total_count,
             'Total_revenue': total_revenue,
-            'Matching_Records': matching_records  # Include matching records in the response
+            'Matching_Records': matching_records
         })
 
         overall_total_records += len(matching_records)
@@ -137,9 +137,39 @@ def format_response(aggregated_info):
     }
 
     return overall_counts, overall_total_revenue, response_data, overall_total_records
-
-
 ```
-
 ---
 
+## **IAM Policy for Lambda Execution Role**
+
+Attach this policy to the Lambda execution role to allow access to DynamoDB and CloudWatch.
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:Scan",
+                "dynamodb:Query",
+                "dynamodb:GetItem"
+            ],
+            "Resource": "arn:aws:dynamodb:us-west-2:YOUR_AWS_ACCOUNT_ID:table/Avana"
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": "arn:aws:logs:us-west-2:YOUR_AWS_ACCOUNT_ID:*"
+        }
+    ]
+}
+```
+
+Replace `YOUR_AWS_ACCOUNT_ID` with your actual AWS account ID.
+
+---
