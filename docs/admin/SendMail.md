@@ -61,5 +61,27 @@ def lambda_handler(event, context):
 
 ```
 
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "ses:SendEmail"
+            ],
+            "Resource": [
+                "arn:aws:ses:REGION:ACCOUNT_ID:identity/rohan@avanasurgical.com"
+            ]
+        }
+    ]
+}
+
+```
 ---
 
