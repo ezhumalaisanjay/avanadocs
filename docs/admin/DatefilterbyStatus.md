@@ -70,7 +70,43 @@ def lambda_handler(event, context):
     return json.dumps(sorted_result, cls=DecimalEncoder)
 ```
 
+
+
 ---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "dynamodb:Query"
+      ],
+      "Resource": [
+        "arn:aws:dynamodb:us-west-2:YOUR_ACCOUNT_ID:table/Avana"
+      ]
+    },
+    {
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": [
+        "arn:aws:logs:us-west-2:YOUR_ACCOUNT_ID:log-group:/aws/lambda/YOUR_LAMBDA_FUNCTION_NAME:*"
+      ]
+    }
+  ]
+}
+
+
+```
+---
+
 
 ## Notes
 - Ensure the `Avana` table exists and has a partition key of `category`.
