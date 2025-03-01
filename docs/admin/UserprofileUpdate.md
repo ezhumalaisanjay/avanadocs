@@ -116,5 +116,47 @@ def lambda_handler(event, context):
 
 ```
 
+
+---
+
+## IAM Policy for the Lambda Function
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",
+            "Action": [
+                "dynamodb:UpdateItem"
+            ],
+            "Resource": [
+                "arn:aws:dynamodb:REGION:ACCOUNT_ID:table/Avana"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "cognito-idp:AdminUpdateUserAttributes"
+            ],
+            "Resource": [
+                "arn:aws:cognito-idp:REGION:ACCOUNT_ID:userpool/us-west-2_rpX7WI1w2"
+            ]
+        },
+        {
+            "Effect": "Allow",
+            "Action": [
+                "logs:CreateLogGroup",
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+            ],
+            "Resource": [
+                "arn:aws:logs:REGION:ACCOUNT_ID:log-group:/aws/lambda/YOUR_LAMBDA_NAME:*"
+            ]
+        }
+    ]
+}
+
+```
 ---
 
