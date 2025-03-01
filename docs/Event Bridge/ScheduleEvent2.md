@@ -1,4 +1,4 @@
-# Schedule Event 2
+# Access token from refresh token
 
 **Schedule Name:**  
 `Trigger_refresh_token_serach_crm_access_token`

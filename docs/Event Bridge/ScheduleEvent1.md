@@ -1,4 +1,4 @@
-# Schedule Event 1
+# Generate access token for Zoho CRM
 
 **Schedule Name:**  
 `Generate_access_token`

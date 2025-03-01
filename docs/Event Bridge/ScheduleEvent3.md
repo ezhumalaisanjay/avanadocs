@@ -1,4 +1,4 @@
-# Schedule Event 3
+# Generate access token for Zoho inventory
 
 **Schedule Name:**  
 `Generate_access_token_inventory`
